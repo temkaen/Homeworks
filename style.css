@@ -1,0 +1,19 @@
+.wrap {
+    margin: 0 auto;
+    border: 5px dotted red;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-content: space-around;
+}
+
+.wrap div {
+    border: 2px solid black;
+    border-radius: 20px;
+
+}
+
+.block {
+   flex-basis: 380px;
+    padding: 5px;
+}
