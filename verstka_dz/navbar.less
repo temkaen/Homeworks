@@ -1,0 +1,28 @@
+.navbar {
+  //grid-area: navbar;
+  height: 40px;
+  background: #646d81;
+    &__content {
+      display: flex;
+      flex-flow: row nowrap;
+      max-width: 960px;
+      min-width: 500px;
+      margin: 0 auto;
+      &_mobile {
+        flex-flow: column nowrap;
+      }
+        &_item {
+          color: white;
+          cursor: pointer;
+          text-align: center;
+          margin-right: 30px;
+          font: 14px sans-serif;
+          padding-top: 10px;
+
+        }
+        &_item:hover {
+          border-top: solid 5px white;
+          padding-top: 5px;
+        }
+    }
+}

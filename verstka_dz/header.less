@@ -1,0 +1,133 @@
+.header {
+  position: relative;
+  background: #2d313d;
+  height: 60px;
+  width: 100%;
+  min-width: 500px;
+
+    &__menu_btn {
+    display: none;
+    transition: all 5s;
+  }
+
+    &__menu_btn_active {
+    display: block;
+    position: absolute;
+    background: black;
+    opacity: 0.7;
+    width: 320px;
+    top: 60px;
+    z-index: 5;
+  }
+
+
+    &__content {
+      max-width: 960px;
+
+      margin: 0 auto;
+        &_logo {
+          float: left;
+          width: 32px;
+          height: 20px;
+          margin: 20px 0;
+        }
+
+        &_items {
+          float: right;
+          font: 17px sans-serif;
+          color: #727989 !important;
+          text-decoration: none;
+            & a, & i, & img {
+              text-decoration: none;
+              color: #727989;
+              margin: 3px 10px;
+              transition: all 1s ease-in-out;
+
+            }
+            & a:hover, & i:hover {
+              color: white;
+              transform: scale(1.1);
+            }
+
+            &_avatar {
+              width: 30px;
+              position: relative;
+              top: 10px;
+              border-radius: 5px;
+              cursor: pointer;
+              transition: all 2s ease;
+            }
+            &_avatar:hover {
+              transform: scale(1.2);
+            }
+            & i:last-child {
+              cursor: pointer;
+            }
+            & a:first-child {
+              border-bottom: 1px dashed;
+              margin-right: -4px;
+            }
+
+        }
+
+    }
+
+}
+.header__btn {
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  position: relative;
+}
+.header__btn span,
+.header__btn span::before,
+.header__btn span::after {
+  position: absolute;
+  top: 50%; margin-top: -1px;
+  left: 50%; margin-left: -10px;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+}
+
+.header__btn span::before,
+.header__btn span::after {
+  content: '';
+  display: block;
+  transition: 0.2s;
+}
+
+.header__btn span::before {
+  transform: translateY(-5px);
+}
+
+.header__btn_active span {
+  height: 0;
+}
+.header__btn span::after {
+  transform: translateY(5px);
+}
+
+.header__btn_active span:before {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.header__btn_active span:after {
+  transform: rotate(45deg);
+  transform-origin: center;
+}
+
+.header__menubtn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 30px;
+  top: 5px;
+  z-index: 5;
+}
+
+
+
