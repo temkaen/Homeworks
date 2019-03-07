@@ -1,44 +1,47 @@
 function Animal(name) {
-    this.foodAmount = 50;
+    this._foodAmount = 50;//был привантый - делаем защищенным
     this.name = name;
+}
 
-    this._getFormattedFoodAmount = function() {
-        return this.foodAmount + 'гр.';
-    };
+Animal.prototype._getFormattedFoodAmount = function() {
+        return this._foodAmount + 'гр.';
+};
 
-    this.dailyNorm = function(amount) {
-        if (!arguments.length) return this.foodAmount;
+Animal.prototype.dailyNorm = function(amount) {
+        if (!arguments.length) return this._foodAmount;
 
         if (amount < 50 || amount > 500) {
             return 'Недопустимое количество корма.';
         }
 
-        this.foodAmount = amount;
-    };
+        this._foodAmount = amount;
+};//прототип метода дейлинорм для класса животных
 
-    this.name = name;
 
-    var self = this;
-    Animal.prototype.feed = function() {
-        return 'Насыпаем в миску ' + self._getFormattedFoodAmount() + ' корма.';
-    };
-}
+
+Animal.prototype.feed = function() {
+        return 'Насыпаем в миску ' + this._getFormattedFoodAmount() + ' корма.';
+};//прототип метода фид для класса животных
+
 
 function Cat(name) {
-    Animal.apply(this, arguments);
+    Animal.apply(this, arguments);//наследуем от животных вызывая конструктор животных в своём контексте
+}//конструктор класса Коты
+    Cat.prototype = Object.create(Animal.prototype);
+    Cat.prototype.constructor = Cat;
 
-    var animalFeed = this.feed;
-    Cat.prototype.feed = function() {
-        console.log(animalFeed() + '\n' + 'Кот доволен ^_^');
-    };
 
-    Cat.prototype.stroke = function() {
+Cat.prototype.feed = function() {
+    this.animalFeed = Animal.prototype.feed.apply(this, arguments);
+    return this.animalFeed + '\n' + 'Кот доволен ^_^';
+};//расширяем метод для котов
+
+Cat.prototype.stroke = function() {
         console.log('Гладим кота.');
-    };
-}
+};
 
-Cat.prototype = Object.create(Animal.prototype);
-Cat.prototype.constructor = Cat;
+
+
 
 var barsik = new Cat('Барсик');
 console.log(barsik.name);
@@ -48,6 +51,9 @@ console.log(barsik._getFormattedFoodAmount());
 console.log(barsik.stroke());
 
 function copy(obj) {
+    if(obj == null || typeof(obj) != 'object') {
+        return obj;
+    }
     var objKey,
         copyObject = Array.isArray(obj) ? [] : {};
     for (var i in obj) {
