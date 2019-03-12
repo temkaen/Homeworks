@@ -16,3 +16,14 @@ console.log(isAnagram('Кот', 'отк'));
 console.log(isAnagram('Кот', 'отк'));//проверка с регистром
 console.log(isAnagram('кот', 'атк'));
 console.log(isAnagram('кот', 'отко'));
+
+function divideArr(arr, size) {
+    var resultArr = [];
+    for (var i = 0; i < arr.length/size; i++) {
+        resultArr[i] = arr.slice((i*size), (i*size) + size);
+    }
+    return resultArr;
+}
+
+console.log(divideArr([1, 2, 3, 4], 2));
+console.log(divideArr([1, 2, 3, 4, 5], 3));
