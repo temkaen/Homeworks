@@ -27,3 +27,20 @@ function divideArr(arr, size) {
 
 console.log(divideArr([1, 2, 3, 4], 2));
 console.log(divideArr([1, 2, 3, 4, 5], 3));
+
+function vowelsCount(text) {
+    var vowels = ['а', 'о', 'у', 'ы', 'э', 'я', 'ё', 'ю', 'и', 'е'];
+    var workText = text.toLowerCase().split(''),
+        counter = 0;
+    for (var i = 0; i<workText.length; i++) {
+        for (var k = 0; k<vowels.length; k++) {
+            if( workText[i] === vowels[k]) {
+                counter++;
+            }
+        }
+    }
+    return 'количество гласных букв в тексте: ' + counter;
+}
+
+console.log(vowelsCount('Съешь же ещё этих мягких французских булок да выпей чаю'));
+console.log(vowelsCount('В чащах юга жил-был цитрус, да, но фальшивый экземпляр.'));
