@@ -1,3 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
 .changeColorLink {
     color: green;
+}
+
+input {
+    margin: 20px;
+}
+
+.white {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+
+.black {
+    width: 50px;
+    height: 50px;
+    background-color: black;
+}
+
+table {
+    border:1px solid black;
 }
