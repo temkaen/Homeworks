@@ -88,38 +88,27 @@ col.onkeyup = checkInput;
 board.onclick = reverseTd;
 //часть 3 - таблица
 
-var table = document.getElementsByTagName('tbody')[0];
-var rowButton = table.rows[table.rows.length - 1];
+var table = document.getElementsByTagName('tbody')[0],
+    rowButton = table.rows[table.rows.length - 1];
 
 rowButton.onclick = createRow;
 
-    function createRow() {
+function createRow() {
     var newRow = document.createElement ('tr');
     table.insertBefore(newRow, table.children[0]);
     newRow.innerHTML = '<td></td> <td></td> <td></td>';
 }
 
-
 table.onclick = function(event) {
     var target = event.target;
-    var input = document.createElement('input');
-    if (target.tagName === 'TD' && target !== rowButton && target.tagName !== input) {
-
-        input.autofocus = true;
-        target.appendChild(input);
-
-        input.onblur = function () {
-            var contentInput = input.value;
-            input = null;
-            target.innerHTML = contentInput;
-
-        };
-
-        input.onfocus = function () {
-            var content = target.textContent;
-            input.value = content;
-
+    if (target.tagName === 'TD' && target !== rowButton) {
+        target.innerHTML = '<input type="text" onblur="setText(event)" value="' + target.innerText + '">';
+        table.getElementsByTagName('input')[0].focus();
         }
-    }
 };
+
+function setText(event) {
+    var target = event.target;
+    target.parentNode.innerHTML = target.value;
+}
 
