@@ -1,0 +1,11 @@
+.mm, .ss, .msms {
+    display: inline-block;
+    margin: 0 auto;
+    height: 40px;
+    width: 30px;
+    font-size: 30px;
+    text-align: center;
+    border: double 3px black;
+    border-radius: 4px;
+
+}
