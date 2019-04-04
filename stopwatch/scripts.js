@@ -61,3 +61,4 @@ saveBtn.onclick = function () {
     var result = document.createElement('div');
     document.body.appendChild(result).innerHTML = min + ":" + sec + ":" + tenth + "0";
 };
+
