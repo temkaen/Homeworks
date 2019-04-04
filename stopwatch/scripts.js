@@ -1,89 +1,63 @@
-var mm = document.getElementsByClassName('mm')[0],
-    ss = document.getElementsByClassName('ss')[0],
-    msms = document.getElementsByClassName('msms')[0],
-    startBtn = document.getElementsByClassName('start')[0],
-    saveBtn = document.createElement('button'),
-    resetBtn = document.createElement('button');
-
-var counterMs = 0,
-    counterS = 0,
-    counterM = 0;
+var time = 0;
+var startBtn = document.getElementById("workPaused"),
+    saveBtn = document.createElement("button"),
+    resetBtn = document.createElement("button"),
+    wrapper = document.getElementsByClassName("wrapper")[0];
 
 
-
-startBtn.onclick = function(event) {
+var workPaused = function workPaused(event){
     var target = event.target;
 
+    wrapper.appendChild(saveBtn).innerText = "Сохранить значение";
+    wrapper.appendChild(resetBtn).innerText = "Сбросить секундомер";
 
-
-    document.body.appendChild(saveBtn).innerText = 'Сохранить значение';
-    document.body.appendChild(resetBtn).innerText = 'Сбросить секундомер';
-    var int = setInterval(forMs, 10);
-
-
-
-    if (target.getAttribute('data') === 'paused') {
-        forMs();
-        startBtn.setAttribute('data', 'works');
-        startBtn.innerHTML = 'Приостановить';
-
-
-
+    if (target.getAttribute('data-statusBtn') === 'works') {
+        document.getElementById("workPaused").innerText = "Возобновить";
+        target.setAttribute('data-statusBtn', 'paused');
+    } else if (target.getAttribute('data-statusBtn') === "stopped"|| "paused") {
+        target.setAttribute("data-statusBtn", "works");
+        workSW();
+        document.getElementById("workPaused").innerText = "Приостановить";
     }
-
-    if (target.getAttribute('data') === 'works') {
-        clearInterval(int);
-        startBtn.setAttribute('data', 'paused');
-        startBtn.innerHTML = 'Возобновить';
-
-
-
-
-
-    }
-    if (target.getAttribute('data') === 'start') {
-        forMs();
-        startBtn.setAttribute('data', 'works');
-        startBtn.innerHTML = 'Приостановить';
-
-
-
-
-
-    }
-
-
 };
 
+startBtn.onclick = workPaused;
 
-function forMs() {
+var min,
+    sec,
+    tenth;
 
-    counterMs++;
-    msms.innerText = counterMs;
-    if (counterMs === 100) {
-        counterMs = 0;
+var  workSW = function forWorkStopwatch(){
 
-        counterS++;
-        ss.innerText = counterS;
-        if (counterS === 59) {
-            counterS = 0;
-            counterM++;
-            mm.innerText = counterM;
-        }
+    if(startBtn.getAttribute("data-statusBtn") === "works"){
+       var forTimeout = setTimeout(function(){
+            time++;
+            min = Math.floor(time/10/60);
+            sec = Math.floor(time/10 % 60);
+            tenth = time % 10;
+            if(min < 10){
+                min = "0" + min;
+            }
+            if(sec < 10){
+                sec = "0" + sec;
+            } else if (min === 60) {
+                clearTimeout(forTimeout);
+            }
+            document.getElementsByClassName('timer')[0].innerHTML = min + ":" + sec + ":" + tenth + "0";
+            workSW();
+        },100)
     }
-
-}
-
-resetBtn.onclick = function () {
-    counterMs = 0;
-    counterS = 0;
-    counterM = 0;
-    mm.innerText = '0';
-    ss.innerText = '0';
-    msms.innerText = '0';
 };
 
+resetBtn.onclick =function reset(){
+
+    time = 0;
+    document.getElementById("workPaused").innerHTML = "Запустить";
+    document.getElementsByClassName("timer")[0].innerHTML = "00:00:00";
+    clearTimeout(workSW.forTimeout);
+
+};
 saveBtn.onclick = function () {
     var result = document.createElement('div');
-    document.body.appendChild(result).innerHTML = 'значение :' + counterM + ':' + counterS + ' :' + counterMs;
+    document.body.appendChild(result).innerHTML = min + ":" + sec + ":" + tenth + "0";
 };
