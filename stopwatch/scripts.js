@@ -25,12 +25,13 @@ startBtn.onclick = workPaused;
 
 var min,
     sec,
-    tenth;
+    tenth,
+    forTimeout;
 
 var  workSW = function forWorkStopwatch(){
 
     if(startBtn.getAttribute("data-statusBtn") === "works"){
-       var forTimeout = setTimeout(function(){
+       forTimeout = setTimeout(function(){
             time++;
             min = Math.floor(time/10/60);
             sec = Math.floor(time/10 % 60);
@@ -54,10 +55,10 @@ resetBtn.onclick =function reset(){
     time = 0;
     document.getElementById("workPaused").innerHTML = "Запустить";
     document.getElementsByClassName("timer")[0].innerHTML = "00:00:00";
+    clearTimeout(forTimeout);
 };
 
 saveBtn.onclick = function () {
     var result = document.createElement("div");
     document.body.appendChild(result).innerHTML = min + ":" + sec + ":" + tenth + "0";
 };
-
