@@ -43,7 +43,7 @@ var  workSW = function forWorkStopwatch(){
             } else if (min === 60) {
                 clearTimeout(forTimeout);
             }
-            document.getElementsByClassName('timer')[0].innerHTML = min + ":" + sec + ":" + tenth + "0";
+            document.getElementsByClassName("timer")[0].innerHTML = min + ":" + sec + ":" + tenth + "0";
             workSW();
         },100)
     }
@@ -54,11 +54,10 @@ resetBtn.onclick =function reset(){
     time = 0;
     document.getElementById("workPaused").innerHTML = "Запустить";
     document.getElementsByClassName("timer")[0].innerHTML = "00:00:00";
-    clearTimeout(workSW.forTimeout);
-
 };
+
 saveBtn.onclick = function () {
-    var result = document.createElement('div');
+    var result = document.createElement("div");
     document.body.appendChild(result).innerHTML = min + ":" + sec + ":" + tenth + "0";
 };
 
