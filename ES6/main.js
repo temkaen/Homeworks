@@ -24,7 +24,7 @@
 
 //9
 {
-    class Animal {
+        class Animal {
         constructor(name){
             this.name = name;
             this._foodAmount = 50;
@@ -55,57 +55,18 @@
 
         feed() {
 
-            return `${super.feed()} Кот доволен ^_^`;
+            console.log(`${super.feed()} Кот доволен ^_^`);
+			return this;
         };
 
         stroke() {
-            return `Гладим кота`;
+
+            console.log(`Гладим кота`);
+            return this;
+
         }
     }
 
-
-
-
     const barsik = new Cat('Барсик');
-    barsik.feed();
-    barsik.stroke();
+    barsik.feed().stroke();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
